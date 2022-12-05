@@ -8,4 +8,4 @@ interactive coding approach in VS Code.
 ## Previous years
 
 - [2021 in C# with LINQ](https://github.com/cpbotha/adventofcode2021) - dropped out on day 10.
-- [2022 in Nim](https://github.com/cpbotha/adventofcode2020) - dropped out on day 21.
+- [2020 in Nim](https://github.com/cpbotha/adventofcode2020) - dropped out on day 21.

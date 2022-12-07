@@ -2,6 +2,8 @@
 
 # possible improvements:
 # - pattern matching in the session / commands traversal would save a few lines
+# - it was not necessary to build a whole tree like here, I could just have
+#   calculated everything during parsing of the input. Oh well.
 
 # %% read data
 

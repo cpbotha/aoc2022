@@ -1,4 +1,4 @@
-# %%
+# %% read the grid
 
 from pathlib import Path
 
@@ -12,6 +12,8 @@ for i, l in enumerate(lines):
     grid[i, :] = [int(c) for c in l]
 
 # %% part 1
+
+# first count the interior
 numvis = 0
 for r in range(1, grid.shape[0] - 1):
     for c in range(1, grid.shape[1] - 1):
@@ -25,6 +27,7 @@ for r in range(1, grid.shape[0] - 1):
         ):
             numvis += 1
 
+# then add up the border
 numvis += 2 * (grid.shape[0] + grid.shape[1]) - 4
 # should be 1711
 print(f"part2: {numvis}")
@@ -33,6 +36,9 @@ print(f"part2: {numvis}")
 
 
 def calc_vd(h, arr):
+    # unnecessarily complex in numpy finding first index satisfying condition, see e.g.
+    # https://stackoverflow.com/questions/16243955/numpy-first-occurrence-of-value-greater-than-existing-value
+    # so I just use my favourite generator trick, with a default value to give edge
     return 1 + next((idx for idx in range(len(arr)) if arr[idx] >= h), len(arr)-1)
 
 

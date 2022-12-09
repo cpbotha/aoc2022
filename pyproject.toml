@@ -8,6 +8,7 @@ authors = ["Charl P. Botha <cpbotha@vxlabs.com>"]
 python = "^3.11"
 jupyter = "^1.0.0"
 pandas = "^1.5.2"
+black = "^22.10.0"
 
 [tool.poetry.dev-dependencies]
 

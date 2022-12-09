@@ -76,11 +76,11 @@ for m in moves:
 
             vec = lead-follow
             dist = np.linalg.norm(vec)
+            # 1.41... and under means we're in one of the 8 adjacent blocks, no action required
             if dist > 1.42:
-                # we're either 2.0 (on same row or column) or > 2.01, meaning diagonal
+                # we're either 2.0 (on same row or column) or >> 2.01, meaning diagonal
                 # buuuut we don't have to check for that, our np.sign(vec) will move diagonally or straight appropriately
-                dvec = np.sign(vec)
-                follow += dvec
+                follow += np.sign(vec)
 
         # record where the last knot went
         tps2[tuple(knots[-1])] += 1

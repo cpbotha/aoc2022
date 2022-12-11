@@ -15,3 +15,7 @@ black = "^22.10.0"
 [build-system]
 requires = ["poetry-core>=1.2.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+# change black's default from 88 characters to 120 characters
+line-length = 120

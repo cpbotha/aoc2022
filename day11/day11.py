@@ -1,7 +1,9 @@
 # %% read data
+import copy
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterator, List
+
 
 
 @dataclass
@@ -12,7 +14,7 @@ class Monkey:
     inspections: int = 0
 
 
-fn = Path(__file__).parent / "input.txt"
+fn = Path(__file__).parent / "test_input.txt"
 
 smonkeys = fn.read_text().strip().split("\n\n")
 monkeys = []
@@ -43,26 +45,40 @@ for smonkey in smonkeys:
 
     monkeys.append(Monkey(items, operation, test))
 
-for round in range(20):
-    print(f"{round}\n")
-    for m in monkeys:
-        moved = []
-        for iidx in range(len(m.items)):
-            item = m.items[iidx]
-            w = m.operation(item) // 3
-            monkeys[m.test(w)].items.append(w)
-            moved.append(iidx)
+def simulate(monkeys, rounds=20, worry_divider=3):
+    for round in range(rounds):
+        for m in monkeys:
+            moved = []
+            for iidx in range(len(m.items)):
+                item = m.items[iidx]
+                w = m.operation(item) // worry_divider
+                monkeys[m.test(w)].items.append(w)
+                moved.append(iidx)
 
-        m.inspections += len(m.items)
+            m.inspections += len(m.items)
 
-        moved.reverse()
-        for midx in moved:
-            del m.items[midx]
+            moved.reverse()
+            for midx in moved:
+                del m.items[midx]
 
-    for m in monkeys:
-        print(m.items)
-            
-inspections = [m.inspections for m in monkeys]
+        if round+1 == 20 or (round+1) % 100 == 0:
+            print(f"{round+1}\n")
+            print([m.inspections for m in monkeys])
+
+
+monkeys_p1 = copy.deepcopy(monkeys)
+simulate(monkeys_p1)
+inspections = [m.inspections for m in monkeys_p1]
 inspections.sort(reverse=True)
-print(inspections[0] * inspections[1])
+# 121450
+print(f"part1: {inspections[0] * inspections[1]}")
+
+monkeys_p2 = copy.deepcopy(monkeys)
+simulate(monkeys_p2, 10000, 1)
+inspections = [m.inspections for m in monkeys_p2]
+inspections.sort(reverse=True)
+# 121450
+print(f"part2: {inspections[0] * inspections[1]}")
+
+
 

@@ -63,6 +63,13 @@ supermod = math.prod(all_divs)
 
 
 def simulate(monkeys, rounds=20, worry_divider=3):
+    """Run the monkey simulation.
+
+    Parameters
+    ----------
+    worry_divider
+        Usually 1, set to 3 only for part 1.
+    """
     for round_ in range(rounds):
         for m in monkeys:
             ilen = len(m.items)

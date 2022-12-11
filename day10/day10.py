@@ -34,7 +34,9 @@ def draw_pixel():
         del sprite[0]
     if sprite[-1] > 39:
         del sprite[-1]
-    ret = "#" if pixel_x in sprite else "."
+    # based on tip from Ross MacArthur to make more readable
+    # this square renders two spaces wide
+    ret = "🟧" if pixel_x in sprite else "  "
     if pixel_x == 39:
         # pixels at the right end, add a \n
         ret += "\n"
@@ -59,7 +61,7 @@ for ip in ins:
         case _:
             print("NOOOOOOO")
 
-
+# 14240
 print(f"part1 sum of signal strengths: {sum_strength}")
 
 # PLULKBZH
@@ -77,3 +79,4 @@ print(f"\n{disp}")
 .....####..##..####.#..#.###..####.#..#.
 
 """
+
